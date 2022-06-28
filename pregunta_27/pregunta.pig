@@ -19,4 +19,12 @@ $ pig -x local -f pregunta.pig
 
         >>> Escriba su respuesta a partir de este punto <<<
 */
+A = LOAD './data.csv' using PigStorage(',') AS (id:int,  name:chararray, lastname:chararray,   date:chararray,  color:chararray, other:int);
+B = FOREACH A GENERATE INDEXOF(name, 'ia');
+STORE B INTO 'output/' using PigStorage(',');
+A = LOAD './data.csv' using PigStorage(',')
+     AS (num:int, name:chararray, LASTNAME:chararray, time:chararray, color:chararray, otre:int);
+B = FOREACH A GENERATE SUBSTRING(time,0,4), SUBSTRING(time,2,4);
+DUMP B;
 
+STORE B INTO 'output/' using PigStorage(',');
